@@ -40,13 +40,34 @@
   overlay?.addEventListener('click', closeDrawer);
   drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
 
-  /* ---------- Hero orbit video (fallback if autoplay is blocked) ---------- */
+  /* ---------- Video autoplay fallback (in case a browser blocks it) ---------- */
   const orbitVideo = document.querySelector('.orbit-video');
-  if (orbitVideo) {
-    const tryPlay = () => orbitVideo.play().catch(() => {});
-    tryPlay();
-    document.addEventListener('click', tryPlay, { once: true });
-    document.addEventListener('touchstart', tryPlay, { once: true });
+  const resumeVideos = () => {
+    if (orbitVideo) orbitVideo.play().catch(() => {});
+    document.querySelectorAll('.service-video').forEach((vid) => {
+      const rect = vid.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) vid.play().catch(() => {});
+    });
+  };
+  resumeVideos();
+  document.addEventListener('click', resumeVideos, { once: true });
+  document.addEventListener('touchstart', resumeVideos, { once: true });
+
+  /* ---------- Service card videos: only play while visible on screen ---------- */
+  const serviceVideos = document.querySelectorAll('.service-video');
+  if (serviceVideos.length && 'IntersectionObserver' in window) {
+    const svObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const vid = entry.target;
+          if (entry.isIntersecting) vid.play().catch(() => {});
+          else vid.pause();
+        });
+      },
+      { threshold: 0.35 }
+    );
+    serviceVideos.forEach((vid) => svObserver.observe(vid));
   }
 
   /* ---------- Contact form (Formspree) ---------- */
