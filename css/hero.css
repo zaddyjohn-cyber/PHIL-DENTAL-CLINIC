@@ -280,6 +280,39 @@
   transform: translateX(-50%);
 }
 
+.cta-banner-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  z-index: 1;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.cta-banner-img-left {
+  left: -30px;
+  mask-image: linear-gradient(to right, black 45%, transparent 92%);
+  -webkit-mask-image: linear-gradient(to right, black 45%, transparent 92%);
+}
+
+.cta-banner-img-right {
+  right: -30px;
+  mask-image: linear-gradient(to left, black 45%, transparent 92%);
+  -webkit-mask-image: linear-gradient(to left, black 45%, transparent 92%);
+}
+
+@media (max-width: 1180px) {
+  .cta-banner-img { width: 220px; height: 260px; }
+}
+
+@media (max-width: 980px) {
+  .cta-banner-img { display: none; }
+}
+
 .cta-banner h2 {
   color: var(--color-gold);
   font-size: clamp(2rem, 5vw, 3.2rem);
