@@ -8,7 +8,10 @@
   min-height: 620px;
   width: 100%;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% 20%, #14213D 0%, #0A1628 60%, #060D1A 100%);
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(20,33,61,0.55) 0%, rgba(10,22,40,0.82) 60%, rgba(6,13,26,0.94) 100%),
+    linear-gradient(180deg, rgba(10,22,40,0.65), rgba(6,13,26,0.9)),
+    url('../images/hero-banner.jpg') center 25% / cover no-repeat;
   display: flex;
   align-items: center;
 }
@@ -25,7 +28,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(120deg, #0A1628, #10233E, #0A1628);
+  background: linear-gradient(120deg, transparent, rgba(0,201,255,0.16), transparent);
   background-size: 300% 300%;
   animation: gradient-flow 12s ease infinite;
   display: none;
