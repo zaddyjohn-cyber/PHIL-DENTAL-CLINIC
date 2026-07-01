@@ -40,6 +40,15 @@
   overlay?.addEventListener('click', closeDrawer);
   drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
 
+  /* ---------- Hero orbit video (fallback if autoplay is blocked) ---------- */
+  const orbitVideo = document.querySelector('.orbit-video');
+  if (orbitVideo) {
+    const tryPlay = () => orbitVideo.play().catch(() => {});
+    tryPlay();
+    document.addEventListener('click', tryPlay, { once: true });
+    document.addEventListener('touchstart', tryPlay, { once: true });
+  }
+
   /* ---------- Contact form (Formspree) ---------- */
   const contactForm = document.querySelector('#contact-form');
   if (contactForm) {
