@@ -143,6 +143,7 @@
   left: 50%;
   width: 62px;
   height: 62px;
+  max-width: none;
   margin: -31px 0 0 -31px;
   border-radius: 50%;
   object-fit: cover;
