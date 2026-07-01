@@ -1,7 +1,7 @@
 /* ==========================================================================
    PHIL Dental Clinic — Animations
-   Navbar scroll state, scroll-reveal, GSAP ScrollTrigger, CountUp stats,
-   VanillaTilt cards, custom cursor.
+   Navbar scroll state, scroll-reveal, CountUp stats, VanillaTilt cards,
+   custom cursor.
    ========================================================================== */
 
 (function () {
@@ -35,41 +35,6 @@
     });
   } else {
     revealEls.forEach((el) => el.classList.add('in-view'));
-  }
-
-  /* ---------- GSAP ScrollTrigger enhancements (if loaded) ---------- */
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.utils.toArray('.gsap-fade-up').forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 85%' },
-        }
-      );
-    });
-
-    gsap.utils.toArray('.gsap-stagger').forEach((group) => {
-      const items = group.children;
-      gsap.fromTo(
-        items,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: group, start: 'top 82%' },
-        }
-      );
-    });
   }
 
   /* ---------- CountUp stats ---------- */
@@ -156,7 +121,7 @@
     }
     ringLoop();
 
-    const hoverables = 'a, button, .btn, .flip-card, .filter-tab, input, textarea, select, .masonry-item';
+    const hoverables = 'a, button, .btn, .flip-card, input, textarea, select';
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest(hoverables)) ring.classList.add('hover');
     });

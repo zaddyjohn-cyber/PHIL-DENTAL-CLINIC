@@ -40,34 +40,49 @@
   overlay?.addEventListener('click', closeDrawer);
   drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
 
-  /* ---------- Video autoplay fallback (in case a browser blocks it) ---------- */
-  const orbitVideo = document.querySelector('.orbit-video');
-  const resumeVideos = () => {
-    if (orbitVideo) orbitVideo.play().catch(() => {});
-    document.querySelectorAll('.service-video').forEach((vid) => {
-      const rect = vid.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) vid.play().catch(() => {});
-    });
-  };
-  resumeVideos();
-  document.addEventListener('click', resumeVideos, { once: true });
-  document.addEventListener('touchstart', resumeVideos, { once: true });
+  /* ---------- Videos: skip entirely on mobile to save data/battery ---------- */
+  // Below this width, videos never download — the poster image stays static.
+  const isMobile = window.innerWidth < 768 || window.matchMedia('(hover: none)').matches;
+  const allVideos = document.querySelectorAll('.orbit-video, .service-video');
 
-  /* ---------- Service card videos: only play while visible on screen ---------- */
-  const serviceVideos = document.querySelectorAll('.service-video');
-  if (serviceVideos.length && 'IntersectionObserver' in window) {
-    const svObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const vid = entry.target;
-          if (entry.isIntersecting) vid.play().catch(() => {});
-          else vid.pause();
-        });
-      },
-      { threshold: 0.35 }
-    );
-    serviceVideos.forEach((vid) => svObserver.observe(vid));
+  if (!isMobile) {
+    allVideos.forEach((vid) => {
+      const source = vid.querySelector('source[data-src]');
+      if (source) {
+        source.src = source.getAttribute('data-src');
+        vid.load();
+      }
+    });
+
+    /* Autoplay fallback (in case a browser blocks it) */
+    const orbitVideo = document.querySelector('.orbit-video');
+    const resumeVideos = () => {
+      if (orbitVideo) orbitVideo.play().catch(() => {});
+      document.querySelectorAll('.service-video').forEach((vid) => {
+        const rect = vid.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView) vid.play().catch(() => {});
+      });
+    };
+    resumeVideos();
+    document.addEventListener('click', resumeVideos, { once: true });
+    document.addEventListener('touchstart', resumeVideos, { once: true });
+
+    /* Service card videos: only play while visible on screen */
+    const serviceVideos = document.querySelectorAll('.service-video');
+    if (serviceVideos.length && 'IntersectionObserver' in window) {
+      const svObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const vid = entry.target;
+            if (entry.isIntersecting) vid.play().catch(() => {});
+            else vid.pause();
+          });
+        },
+        { threshold: 0.35 }
+      );
+      serviceVideos.forEach((vid) => svObserver.observe(vid));
+    }
   }
 
   /* ---------- Contact form (Formspree) ---------- */
