@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Components — cards, grids, forms, gallery, testimonials, timeline
+   Components — cards, grids, forms, testimonials, timeline
    ========================================================================== */
 
 /* ---------- Service flip cards (Home preview) ---------- */
@@ -381,79 +381,6 @@
   .services-sidebar a { white-space: nowrap; margin-bottom: 0; }
   .benefits-list { grid-template-columns: 1fr; }
 }
-
-/* ---------- Gallery ---------- */
-.filter-tabs {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 44px;
-}
-
-.filter-tab {
-  font-family: var(--font-accent);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 12px 24px;
-  border-radius: 100px;
-  border: 1.5px solid rgba(10,22,40,0.15);
-  background: transparent;
-  color: var(--color-text);
-  cursor: pointer;
-  transition: var(--transition-base);
-  min-height: 48px;
-}
-
-.filter-tab.active, .filter-tab:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
-  border-color: var(--color-primary);
-}
-
-.masonry-grid {
-  columns: 4 260px;
-  column-gap: 20px;
-}
-
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: 20px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  box-shadow: var(--shadow-soft);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
-}
-
-.masonry-item:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-deep);
-}
-
-.masonry-item img { width: 100%; display: block; }
-
-.masonry-caption {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 18px 16px;
-  background: linear-gradient(to top, rgba(10,22,40,0.85), transparent);
-  color: var(--color-white);
-  font-family: var(--font-accent);
-  font-size: 0.78rem;
-  letter-spacing: 0.03em;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: var(--transition-base);
-}
-
-.masonry-item:hover .masonry-caption { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 900px) { .masonry-grid { columns: 2 220px; } }
-@media (max-width: 520px) { .masonry-grid { columns: 1; } }
 
 /* ---------- Testimonials page ---------- */
 .big-quote-mark {

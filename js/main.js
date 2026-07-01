@@ -1,6 +1,6 @@
 /* ==========================================================================
    PHIL Dental Clinic — Main App JS
-   Loader, mobile drawer, gallery filters, GLightbox, contact form.
+   Loader, mobile drawer, contact form.
    ========================================================================== */
 
 (function () {
@@ -39,29 +39,6 @@
   hamburger?.addEventListener('click', toggleDrawer);
   overlay?.addEventListener('click', closeDrawer);
   drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
-
-  /* ---------- Gallery filters ---------- */
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  const masonryItems = document.querySelectorAll('.masonry-item');
-  if (filterTabs.length) {
-    filterTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        filterTabs.forEach((t) => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filter = tab.getAttribute('data-filter');
-        masonryItems.forEach((item) => {
-          const cat = item.getAttribute('data-category');
-          const show = filter === 'all' || cat === filter;
-          item.style.display = show ? '' : 'none';
-        });
-      });
-    });
-  }
-
-  /* ---------- GLightbox init ---------- */
-  if (window.GLightbox) {
-    GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
-  }
 
   /* ---------- Contact form (Formspree) ---------- */
   const contactForm = document.querySelector('#contact-form');
