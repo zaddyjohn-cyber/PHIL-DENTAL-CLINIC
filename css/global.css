@@ -92,8 +92,8 @@ p { margin: 0 0 1em; }
 
 section { position: relative; }
 
-.section-pad { padding: 110px 0; }
-@media (max-width: 768px) { .section-pad { padding: 70px 0; } }
+.section-pad { padding: 68px 0; }
+@media (max-width: 768px) { .section-pad { padding: 44px 0; } }
 
 .bg-neutral { background: var(--color-neutral); }
 .bg-navy { background: var(--color-primary); color: var(--color-white); }
@@ -316,7 +316,7 @@ section { position: relative; }
 /* ---------- Page hero (interior pages) ---------- */
 .page-hero {
   background: var(--color-primary);
-  padding: calc(var(--nav-height) + 90px) 0 90px;
+  padding: calc(var(--nav-height) + 56px) 0 56px;
   position: relative;
   overflow: hidden;
   color: var(--color-white);
@@ -516,7 +516,7 @@ section { position: relative; }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
 
 /* ---------- Section heading helper ---------- */
-.section-head { max-width: 640px; margin: 0 auto 60px; text-align: center; }
+.section-head { max-width: 640px; margin: 0 auto 40px; text-align: center; }
 .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
 .section-head p { color: var(--color-text-muted); font-size: 1.05rem; }
 
