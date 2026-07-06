@@ -120,20 +120,7 @@
     });
   }
 
-  /* ---------- Touch device tap-to-flip service cards ---------- */
-  if (window.matchMedia('(hover: none)').matches) {
-    document.querySelectorAll('.flip-card').forEach(function (card) {
-      card.addEventListener('click', function (e) {
-        if (e.target.tagName === 'A') return;
-        document.querySelectorAll('.flip-card.tapped').forEach(function (c) {
-          if (c !== card) c.classList.remove('tapped');
-        });
-        card.classList.toggle('tapped');
-      });
-    });
-  }
-
-  /* ---------- FAQ accordion ---------- */
+/* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-q').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var expanded = btn.getAttribute('aria-expanded') === 'true';

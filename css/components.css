@@ -9,40 +9,19 @@
   gap: 28px;
 }
 
-.flip-card {
-  perspective: 1400px;
-  height: 260px;
-}
-
-.flip-card-inner {
+/* ---------- Service overlay cards ---------- */
+.svc-card {
   position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner,
-.flip-card:focus-within .flip-card-inner { transform: rotateY(180deg); }
-
-.flip-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
+  height: 340px;
   border-radius: var(--radius-md);
-  padding: 34px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.flip-front {
-  background: var(--color-primary);
-  border: 1px solid rgba(10,22,40,0.06);
-  box-shadow: var(--shadow-soft);
-  padding: 0;
-  display: block;
-  overflow: hidden;
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-deep);
 }
 
 .service-video {
@@ -54,56 +33,81 @@
   z-index: 0;
 }
 
-.service-video-scrim {
+.svc-card-body {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba(10,22,40,0.1) 0%, rgba(10,22,40,0.35) 55%, rgba(10,22,40,0.92) 100%);
-}
-
-.service-video-content {
-  position: relative;
   z-index: 2;
-  height: 100%;
-  padding: 26px;
+  background: linear-gradient(180deg, rgba(10,22,40,0.08) 0%, rgba(10,22,40,0.48) 38%, rgba(10,22,40,0.94) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-start;
+  padding: 22px 22px 20px;
 }
 
-.service-video-content .service-icon {
-  width: 52px; height: 52px;
-  border-radius: 14px;
+.svc-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
   background: rgba(255,255,255,0.14);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.28);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem;
-  margin-bottom: 16px;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
-.flip-front h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0;
+.svc-card-body h3 {
+  font-size: 1.1rem;
   color: var(--color-white);
-  text-shadow: 0 4px 18px rgba(0,0,0,0.55);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+  margin-bottom: 8px;
 }
 
-.flip-back {
-  background: var(--color-primary);
-  color: var(--color-white);
-  transform: rotateY(180deg);
-  box-shadow: var(--shadow-deep);
+.svc-bullets {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.flip-back p { color: rgba(255,255,255,0.78); font-size: 0.92rem; }
-.flip-back a { color: var(--color-accent); font-family: var(--font-accent); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.04em; }
-.flip-back a:hover { text-decoration: underline; }
+.svc-bullets li {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.82);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.35;
+}
+
+.svc-bullets li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.68rem;
+}
+
+.svc-cta {
+  display: inline-block;
+  color: var(--color-gold-light, #f5d98a);
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(218,165,32,0.4);
+  padding-bottom: 2px;
+  transition: color var(--transition-base), border-color var(--transition-base);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.svc-cta:hover { color: var(--color-gold); border-color: var(--color-gold); text-decoration: none; }
 
 @media (max-width: 980px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .services-grid { grid-template-columns: 1fr; } .flip-card { height: 220px; } }
+@media (max-width: 620px) { .services-grid { grid-template-columns: 1fr; } .svc-card { height: 280px; } }
 
 /* ---------- Why Choose Us ---------- */
 .why-choose {
@@ -207,59 +211,6 @@
   .phone-mockup { transform: none; }
 }
 
-/* ---------- Enhanced flip-back ---------- */
-.flip-card { height: 300px; }
-@media (max-width: 620px) { .flip-card { height: 260px; } }
-
-.flip-back {
-  padding: 26px !important;
-  justify-content: space-between !important;
-}
-
-.flip-back h3 { font-size: 1.05rem; margin-bottom: 0; }
-
-.flip-bullets {
-  list-style: none;
-  margin: 10px 0 0;
-  padding: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.flip-bullets li {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.82);
-  padding-left: 16px;
-  position: relative;
-  line-height: 1.35;
-}
-
-.flip-bullets li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--color-accent);
-  font-weight: 700;
-  font-size: 0.72rem;
-}
-
-.flip-back-cta {
-  display: inline-block;
-  color: var(--color-gold-light, #f5d98a);
-  font-family: var(--font-accent);
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  margin-top: 12px;
-  border-bottom: 1px solid rgba(218,165,32,0.4);
-  padding-bottom: 2px;
-  transition: color var(--transition-base), border-color var(--transition-base);
-  flex-shrink: 0;
-}
-
-.flip-back-cta:hover { color: var(--color-gold); border-color: var(--color-gold); text-decoration: none; }
 
 /* ---------- Booking phone animation ---------- */
 .phone-screen { position: relative; overflow: hidden; }
@@ -594,22 +545,6 @@
   .service-detail-img { margin: -24px -24px 22px; height: 170px; }
 }
 
-/* Touch device tap-to-flip */
-.flip-card.tapped .flip-card-inner { transform: rotateY(180deg); }
-
-@media (hover: none) {
-  .flip-card { cursor: pointer; }
-  .flip-front::after {
-    content: 'Tap to learn more';
-    position: absolute;
-    bottom: 14px; right: 18px;
-    font-family: var(--font-accent);
-    font-size: 0.68rem;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.04em;
-    z-index: 3;
-  }
-}
 
 /* ---------- Testimonials page ---------- */
 .big-quote-mark {
