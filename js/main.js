@@ -120,6 +120,41 @@
     });
   }
 
+  /* ---------- Touch device tap-to-flip service cards ---------- */
+  if (window.matchMedia('(hover: none)').matches) {
+    document.querySelectorAll('.flip-card').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') return;
+        document.querySelectorAll('.flip-card.tapped').forEach(function (c) {
+          if (c !== card) c.classList.remove('tapped');
+        });
+        card.classList.toggle('tapped');
+      });
+    });
+  }
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      // close all
+      document.querySelectorAll('.faq-q').forEach(function (b) {
+        b.setAttribute('aria-expanded', 'false');
+        var ans = b.closest('.faq-item').querySelector('.faq-a');
+        if (ans) ans.style.height = '0';
+      });
+      // open clicked if it was closed
+      if (!expanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        var answer = btn.closest('.faq-item').querySelector('.faq-a');
+        if (answer) {
+          var inner = answer.querySelector('.faq-a-inner');
+          answer.style.height = (inner ? inner.scrollHeight : 0) + 'px';
+        }
+      }
+    });
+  });
+
   /* ---------- Set active nav link based on current page ---------- */
   const currentPage = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.nav-links a, .mobile-drawer a').forEach((link) => {

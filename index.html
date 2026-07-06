@@ -16,6 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link rel="preload" as="image" href="images/hero-banner.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/hero.css">
@@ -34,6 +36,7 @@
   <a href="about.html">About</a>
   <a href="services.html">Services</a>
   <a href="testimonials.html">Testimonials</a>
+  <a href="blog.html">Blog</a>
   <a href="contact.html">Contact</a>
   <a href="tel:+2348066310546" class="btn btn-gold btn-block" style="margin-top:24px;">Call Now</a>
 </nav>
@@ -49,6 +52,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-cta">
@@ -150,8 +154,12 @@
             </div>
             <div class="flip-face flip-back">
               <h3>Teeth Whitening</h3>
-              <p>Up to 8 shades whiter in a single session with our advanced whitening system.</p>
-              <a href="services.html#whitening">Learn More →</a>
+              <ul class="flip-bullets">
+                <li>Up to 8 shades brighter in one visit</li>
+                <li>Safe, enamel-friendly formula</li>
+                <li>Take-home top-up kits included</li>
+              </ul>
+              <a href="services.html#whitening" class="flip-back-cta">Book Now →</a>
             </div>
           </div>
         </div>
@@ -170,8 +178,12 @@
             </div>
             <div class="flip-face flip-back">
               <h3>Dental Implants</h3>
-              <p>Permanent, natural-looking tooth replacement built to last a lifetime.</p>
-              <a href="services.html#implants">Learn More →</a>
+              <ul class="flip-bullets">
+                <li>Permanent, natural-looking result</li>
+                <li>Protects surrounding bone structure</li>
+                <li>Lasts decades with proper care</li>
+              </ul>
+              <a href="services.html#implants" class="flip-back-cta">Book Now →</a>
             </div>
           </div>
         </div>
@@ -190,8 +202,12 @@
             </div>
             <div class="flip-face flip-back">
               <h3>Braces &amp; Orthodontics</h3>
-              <p>Traditional braces and modern clear aligners for every age.</p>
-              <a href="services.html#orthodontics">Learn More →</a>
+              <ul class="flip-bullets">
+                <li>For children, teens &amp; adults</li>
+                <li>Clear aligners &amp; traditional braces</li>
+                <li>Improves bite function long-term</li>
+              </ul>
+              <a href="services.html#orthodontics" class="flip-back-cta">Book Now →</a>
             </div>
           </div>
         </div>
@@ -210,8 +226,12 @@
             </div>
             <div class="flip-face flip-back">
               <h3>Root Canal Treatment</h3>
-              <p>Pain-free preservation of your natural tooth using modern techniques.</p>
-              <a href="services.html#rootcanal">Learn More →</a>
+              <ul class="flip-bullets">
+                <li>Saves your natural tooth</li>
+                <li>Modern, pain-free protocols</li>
+                <li>Stops infection from spreading</li>
+              </ul>
+              <a href="services.html#rootcanal" class="flip-back-cta">Book Now →</a>
             </div>
           </div>
         </div>
@@ -230,8 +250,12 @@
             </div>
             <div class="flip-face flip-back">
               <h3>Tooth Extraction</h3>
-              <p>Safe, gentle removal when necessary — with careful aftercare guidance.</p>
-              <a href="services.html#extraction">Learn More →</a>
+              <ul class="flip-bullets">
+                <li>Simple &amp; surgical options</li>
+                <li>Comfort-focused local anesthesia</li>
+                <li>Replacement options discussed upfront</li>
+              </ul>
+              <a href="services.html#extraction" class="flip-back-cta">Book Now →</a>
             </div>
           </div>
         </div>
@@ -250,8 +274,12 @@
             </div>
             <div class="flip-face flip-back">
               <h3>Cosmetic Dentistry</h3>
-              <p>Veneers, bonding, and full smile makeovers tailored to you.</p>
-              <a href="services.html#cosmetic">Learn More →</a>
+              <ul class="flip-bullets">
+                <li>Custom veneers &amp; bonding</li>
+                <li>Full smile makeover consultations</li>
+                <li>Digital smile preview available</li>
+              </ul>
+              <a href="services.html#cosmetic" class="flip-back-cta">Book Now →</a>
             </div>
           </div>
         </div>
@@ -266,15 +294,41 @@
       <div class="why-choose">
         <div class="phone-mockup-wrap reveal">
           <div class="phone-mockup">
-            <div class="phone-screen">
-              <div class="app-title">Book Appointment</div>
-              <div class="app-sub">PHIL DENTAL CLINIC</div>
-              <div class="phone-field">Select Service ▾</div>
-              <div class="phone-field">Preferred Date</div>
-              <div class="phone-slot">Mon, 10:00 AM</div>
-              <div class="phone-slot">Mon, 2:30 PM</div>
-              <div class="phone-slot">Tue, 11:15 AM</div>
-              <div class="phone-cta">Confirm Booking</div>
+            <div class="phone-screen" id="bookingPhone">
+
+              <!-- Stage 1: Booking Form -->
+              <div class="bp-stage bp-form" id="bpForm">
+                <div class="app-title">Book Appointment</div>
+                <div class="app-sub">PHIL DENTAL CLINIC</div>
+                <div class="phone-field bp-svc-field"><span class="bp-svc-text">Select Service ▾</span></div>
+                <div class="phone-field bp-date-field"><span class="bp-date-text">Preferred Date</span></div>
+                <div class="phone-slot bp-slot-1">Mon, 10:00 AM</div>
+                <div class="phone-slot bp-slot-2">Mon, 2:30 PM</div>
+                <div class="phone-slot bp-slot-3">Tue, 11:15 AM</div>
+                <div class="phone-cta bp-confirm-btn">Confirm Booking</div>
+              </div>
+
+              <!-- Stage 2: Success -->
+              <div class="bp-stage bp-success" id="bpSuccess">
+                <div class="bp-check-wrap"><div class="bp-check">✓</div></div>
+                <div class="bp-confirmed-title">Booking Confirmed!</div>
+                <div class="bp-confirmed-sub">Mon, 12 Jul · <strong>10:00 AM</strong><br>Teeth Whitening</div>
+                <div class="bp-notif bp-email-notif">
+                  <div class="bp-notif-icon">✉️</div>
+                  <div class="bp-notif-body">
+                    <div class="bp-notif-label">Email confirmation sent</div>
+                    <div class="bp-notif-detail">Check your inbox</div>
+                  </div>
+                </div>
+                <div class="bp-notif bp-sms-notif">
+                  <div class="bp-notif-icon">💬</div>
+                  <div class="bp-notif-body">
+                    <div class="bp-notif-label">SMS reminder sent</div>
+                    <div class="bp-notif-detail">+234 806 *** 0546</div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -381,6 +435,100 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Got Questions?</p>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know before your first visit to PHIL Dental Clinic.</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            Where is PHIL Dental Clinic located?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>We are inside the Lagos Airport Hotel complex — Suite B1, Ekiti Plaza, 111 Obafemi Awolowo Way, Ikeja, Lagos. The location is easily accessible from Murtala Muhammed International Airport and all major roads in Ikeja.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            How much does teeth whitening cost in Lagos?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Professional in-clinic whitening costs vary depending on the type of treatment and severity of staining. At PHIL Dental Clinic, our advanced whitening system delivers up to 8 shades brighter in a single session at a transparent, competitive price. We provide a clear quote after a free initial assessment — no hidden charges.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            Do you offer dental implants in Lagos?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. We perform full dental implant procedures — from titanium root placement to crown fitting — at our Ikeja clinic. We use precise digital planning to ensure each implant is natural-looking, fully functional, and built to last for decades with proper care.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            Are dental treatments painful?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Modern techniques and effective local anesthesia mean most procedures cause little to no discomfort. Our team explains every step before starting, uses comfort-focused protocols, and adjusts based on your feedback. Many patients are surprised at how painless their visit is.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            Is the clinic open on Saturdays?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes — we are open Monday to Saturday, 8:00am to 6:00pm. We know busy schedules make weekday visits difficult, so Saturday appointments are available for all services including consultations, whitening, scaling and routine check-ups.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            How do I book an appointment?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Call or WhatsApp us on <a href="tel:+2348066310546">+234 806 631 0546</a>, or use the <a href="contact.html">Book Appointment</a> form on our contact page. We confirm your slot within one business day and send a reminder before your visit.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            Do you treat children?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Absolutely. We provide gentle pediatric dental care for children of all ages. Our clinicians are experienced at making first dental visits calm and positive — building good habits that last a lifetime. We also educate parents on effective at-home care routines.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q" aria-expanded="false">
+            What should I bring to my first visit?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Just bring yourself. If you have previous dental records or X-rays, those are helpful but not required. We complete a full assessment at your first visit and walk you through any recommended treatment options — with clear pricing — before anything begins.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CTA BANNER -->
   <section class="cta-banner">
     <img src="images/patient-smile-full.jpg" alt="" class="cta-banner-img cta-banner-img-left" loading="lazy" aria-hidden="true">
@@ -445,6 +593,61 @@
 <script src="js/animations.js"></script>
 <script src="js/main.js"></script>
 <script>
+  // Booking phone animation
+  (function () {
+    var phone = document.getElementById('bookingPhone');
+    if (!phone) return;
+    var svcField  = phone.querySelector('.bp-svc-field');
+    var dateField = phone.querySelector('.bp-date-field');
+    var svcText   = phone.querySelector('.bp-svc-text');
+    var dateText  = phone.querySelector('.bp-date-text');
+    var slot1 = phone.querySelector('.bp-slot-1');
+    var slot2 = phone.querySelector('.bp-slot-2');
+    var slot3 = phone.querySelector('.bp-slot-3');
+    var btn   = phone.querySelector('.bp-confirm-btn');
+    var form  = phone.querySelector('.bp-form');
+    var succ  = phone.querySelector('.bp-success');
+    var chk   = phone.querySelector('.bp-check-wrap');
+    var eNotif = phone.querySelector('.bp-email-notif');
+    var sNotif = phone.querySelector('.bp-sms-notif');
+
+    function reset() {
+      svcText.textContent  = 'Select Service ▾';
+      dateText.textContent = 'Preferred Date';
+      svcField.classList.remove('bp-filled');
+      dateField.classList.remove('bp-filled');
+      [slot1,slot2,slot3].forEach(function(s){ s.style.opacity='0'; s.style.transform='translateX(22px)'; s.classList.remove('bp-slot-selected'); });
+      btn.style.opacity = '0'; btn.classList.remove('bp-pressing');
+      form.style.opacity = '1'; form.style.transform = 'translateX(0)';
+      succ.style.opacity = '0'; succ.style.transform = 'translateX(100%)';
+      chk.classList.remove('bp-check-pop');
+      eNotif.style.opacity = '0'; eNotif.style.transform = 'translateY(20px)';
+      sNotif.style.opacity = '0'; sNotif.style.transform = 'translateY(20px)';
+    }
+
+    function run() {
+      reset();
+      var t = [
+        [1200, function(){ svcField.classList.add('bp-filled'); svcText.textContent = 'Teeth Whitening ✓'; }],
+        [2600, function(){ dateField.classList.add('bp-filled'); dateText.textContent = 'Mon, 12 Jul 2026'; }],
+        [3600, function(){ slot1.style.opacity='1'; slot1.style.transform='translateX(0)'; }],
+        [4100, function(){ slot2.style.opacity='1'; slot2.style.transform='translateX(0)'; }],
+        [4600, function(){ slot3.style.opacity='1'; slot3.style.transform='translateX(0)'; }],
+        [5600, function(){ slot1.classList.add('bp-slot-selected'); }],
+        [6600, function(){ btn.style.opacity='1'; }],
+        [7600, function(){ btn.classList.add('bp-pressing'); }],
+        [8400, function(){ form.style.opacity='0'; form.style.transform='translateX(-30px)'; succ.style.opacity='1'; succ.style.transform='translateX(0)'; }],
+        [9000, function(){ chk.classList.add('bp-check-pop'); }],
+        [10100, function(){ eNotif.style.opacity='1'; eNotif.style.transform='translateY(0)'; }],
+        [11200, function(){ sNotif.style.opacity='1'; sNotif.style.transform='translateY(0)'; }],
+        [15500, run]
+      ];
+      t.forEach(function(pair){ setTimeout(pair[1], pair[0]); });
+    }
+
+    setTimeout(run, 800);
+  })();
+
   // Three.js hero scene is heavy (~600KB) — only fetch it for pointer-driven,
   // wide-enough screens. Mobile/touch/reduced-motion visitors never pay for it.
   (function () {
